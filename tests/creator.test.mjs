@@ -173,7 +173,7 @@ test("a creator reply is delivered only to the panel that sent the message", asy
 
   const sent = tg.messages.find((m) => String(m.chat_id) === OWNER && m.text.includes("سلام از پنل B"));
   assert.ok(sent, "the support message reaches the creator chat");
-  assert.ok(sent.text.includes("https://panel-b.example.com"), "the panel link must accompany the message so panels are not mixed up");
+  assert.equal(sent.text, "سلام از پنل B", "routing metadata must not appear in the message");
 
   const k = await creatorKeys();
   const reply = {
